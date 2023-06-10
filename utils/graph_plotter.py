@@ -7,10 +7,11 @@ class GraphPlotter:
         x = range(len(contributors))
         y = [contributor["contributions"] for contributor in contributors]
         plt.clf()
+        plt.figure(figsize=(10, 6))
         plt.bar(x, y)
         plt.xticks(x, [contributor["login"] for contributor in contributors])
         plt.xlabel("Contributors")
-        plt.ylabel("Contributions")
+        plt.ylabel("Commits")
         title = repository_url.replace("https://github.com/", "")
         plt.title(f"{title} Contributors Graph")
         plt.xticks(rotation=90)
@@ -25,6 +26,7 @@ class GraphPlotter:
         modifications = [additions[i] + deletions[i] for i in range(len(weeks))]
         dates = [datetime.datetime.fromtimestamp(week) for week in weeks]
         plt.clf()
+        plt.figure(figsize=(10, 6))
         plt.plot(dates, additions, label='Additions')
         plt.plot(dates, deletions, label='Deletions')
         plt.plot(dates, modifications, label='Modifications')
