@@ -14,7 +14,6 @@ class GitHubAPI:
         owner, repo = self.parse_repository_url(repository_url)
         endpoint = f"repos/{owner}/{repo}/contributors"
         contributors = self.make_authenticated_request(endpoint)
-        print("Calling make_authenticated_request is done")
         return contributors
     
     def get_commit_activity(self, repository_url):

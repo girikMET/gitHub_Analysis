@@ -50,7 +50,7 @@ class GraphPlotter:
         plt.clf()
         plt.figure(figsize=(10, 6))
         plt.plot(weeks, counts)
-        plt.xlabel("Weeks")
+        plt.xlabel("Date")
         plt.ylabel("Commit Counts")
         title = repository_url.replace("https://github.com/", "")
         plt.title(f"{title} Commit Activity Over Time")
