@@ -9,22 +9,21 @@
     </style>
     <script>
         function toggleForm() {
-            var repoInput = document.getElementById('repositoryInput');
-            var fileInput = document.getElementById('fileInput');
-
-            if (document.getElementById('repositoryRadio').checked) {
-                repoInput.style.display = 'inline-block';
-                fileInput.style.display = 'none';
-            } else if (document.getElementById('fileRadio').checked) {
-                repoInput.style.display = 'none';
-                fileInput.style.display = 'inline-block';
+	    var repositoryRadio = document.getElementById("repositoryRadio");
+            var repositoryForm = document.getElementById("repositoryForm");
+            var fileForm = document.getElementById("fileForm");
+	    if (repositoryRadio.checked) {
+                repositoryForm.style.display = "block";
+                fileForm.style.display = "none";
+            } else {
+                repositoryForm.style.display = "none";
+                fileForm.style.display = "block";
             }
         }
     </script>
 </head>
 <body>
     <h1>GitHub Repository Analyzer</h1>
-
     <div class="input-group">
         <input type="radio" name="input_method" id="repositoryRadio" value="repository" checked onclick="toggleForm()"> Using GitHub Repository
     </div>
@@ -32,15 +31,14 @@
         <input type="radio" name="input_method" id="fileRadio" value="txt_file" onclick="toggleForm()"> Using TXT File contains Group of Repositories
     </div>
     <br><br>
-
     <form action="/analyze" method="POST">
         <div id="repositoryInput">
             <input type="text" name="repository_url" placeholder="Enter GitHub repository URL" required>
             <br><br>
             <input type="submit" name="submit" value="Generate Report">
+	    <input type="hidden" name="input_method" value="repository">
         </div>
     </form>
-
     <form action="/upload" method="POST" enctype="multipart/form-data">
         <div id="fileInput" style="display: none;">
             <input type="file" name="file">

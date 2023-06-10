@@ -8,13 +8,13 @@ class GitHubAPI:
     def make_authenticated_request(self, endpoint):
         url = f"{self.base_url}/{endpoint}"
         response = requests.get(url, headers=self.headers)
-        response.raise_for_status()
         return response.json()
 
     def get_contributors(self, repository_url):
         owner, repo = self.parse_repository_url(repository_url)
         endpoint = f"repos/{owner}/{repo}/contributors"
         contributors = self.make_authenticated_request(endpoint)
+        print("Calling make_authenticated_request is done")
         return contributors
     
     def get_commit_activity(self, repository_url):
